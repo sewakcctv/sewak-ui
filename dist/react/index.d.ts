@@ -27,25 +27,18 @@ export { Dialog, ConfirmDialog, DropdownMenu, Drawer } from './overlays/index.js
 export type { DialogProps, ConfirmDialogProps, DropdownMenuProps, MenuItem, DrawerProps } from './overlays/index.js';
 export { Table, Pagination, Tabs, StatCard } from './data/index.js';
 export type { TableProps, PaginationProps, TabsProps, TabItem, StatCardProps } from './data/index.js';
-export declare const AppShell: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const Header: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const Sidebar: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const MobileNav: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const PageHeader: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const ContentSection: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-export declare const ActionBar: ({ children }: {
-    children?: ReactNode;
-}) => string | number | bigint | boolean | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null;
-import type { ReactNode } from 'react';
+export { AppShell } from './structure/AppShell.js';
+export type { AppShellProps } from './structure/AppShell.js';
+export { Header } from './structure/Header.js';
+export type { HeaderProps } from './structure/Header.js';
+export { Sidebar } from './structure/Sidebar.js';
+export type { SidebarProps } from './structure/Sidebar.js';
+export { MobileNav } from './structure/MobileNav.js';
+export type { MobileNavProps, MobileNavElement } from './structure/MobileNav.js';
+export type { NavigationItem } from './structure/navigation.js';
+export { PageHeader } from './structure/PageHeader.js';
+export type { PageHeaderProps } from './structure/PageHeader.js';
+export { ContentSection } from './structure/ContentSection.js';
+export type { ContentSectionProps } from './structure/ContentSection.js';
+export { ActionBar } from './structure/ActionBar.js';
+export type { ActionBarProps } from './structure/ActionBar.js';

@@ -12,11 +12,10 @@ export { Card, Badge, Alert, EmptyState, Skeleton, Spinner, Separator } from './
 export { ToastProvider, useToast, Tooltip } from './feedback/index.js';
 export { Dialog, ConfirmDialog, DropdownMenu, Drawer } from './overlays/index.js';
 export { Table, Pagination, Tabs, StatCard } from './data/index.js';
-const Placeholder = ({ children }) => children ?? null;
-export const AppShell = Placeholder;
-export const Header = Placeholder;
-export const Sidebar = Placeholder;
-export const MobileNav = Placeholder;
-export const PageHeader = Placeholder;
-export const ContentSection = Placeholder;
-export const ActionBar = Placeholder;
+export { AppShell } from './structure/AppShell.js';
+export { Header } from './structure/Header.js';
+export { Sidebar } from './structure/Sidebar.js';
+export { MobileNav } from './structure/MobileNav.js';
+export { PageHeader } from './structure/PageHeader.js';
+export { ContentSection } from './structure/ContentSection.js';
+export { ActionBar } from './structure/ActionBar.js';

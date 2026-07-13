@@ -33,13 +33,18 @@ export { Dialog, ConfirmDialog, DropdownMenu, Drawer } from './overlays/index.js
 export type { DialogProps, ConfirmDialogProps, DropdownMenuProps, MenuItem, DrawerProps } from './overlays/index.js';
 export { Table, Pagination, Tabs, StatCard } from './data/index.js';
 export type { TableProps, PaginationProps, TabsProps, TabItem, StatCardProps } from './data/index.js';
-
-const Placeholder = ({children}:{children?:ReactNode}) => children ?? null;
-export const AppShell = Placeholder;
-export const Header = Placeholder;
-export const Sidebar = Placeholder;
-export const MobileNav = Placeholder;
-export const PageHeader = Placeholder;
-export const ContentSection = Placeholder;
-export const ActionBar = Placeholder;
-import type { ReactNode } from 'react';
+export { AppShell } from './structure/AppShell.js';
+export type { AppShellProps } from './structure/AppShell.js';
+export { Header } from './structure/Header.js';
+export type { HeaderProps } from './structure/Header.js';
+export { Sidebar } from './structure/Sidebar.js';
+export type { SidebarProps } from './structure/Sidebar.js';
+export { MobileNav } from './structure/MobileNav.js';
+export type { MobileNavProps, MobileNavElement } from './structure/MobileNav.js';
+export type { NavigationItem } from './structure/navigation.js';
+export { PageHeader } from './structure/PageHeader.js';
+export type { PageHeaderProps } from './structure/PageHeader.js';
+export { ContentSection } from './structure/ContentSection.js';
+export type { ContentSectionProps } from './structure/ContentSection.js';
+export { ActionBar } from './structure/ActionBar.js';
+export type { ActionBarProps } from './structure/ActionBar.js';
