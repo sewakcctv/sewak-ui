@@ -14,6 +14,8 @@ export interface SewakContextValue {
 export interface SewakProviderProps {
   density?: Density;
   colorScheme?: ColorScheme;
+  /** Resolved system scheme embedded in SSR markup to keep hydration and first paint deterministic. */
+  systemColorScheme?: ResolvedColorScheme;
   children: ReactNode;
 }
 
@@ -28,9 +30,10 @@ let hasWarnedAboutMissingProvider = false;
 export function SewakProvider({
   density = 'comfortable',
   colorScheme = 'system',
+  systemColorScheme = 'light',
   children,
 }: SewakProviderProps) {
-  const resolvedColorScheme = useResolvedColorScheme(colorScheme);
+  const resolvedColorScheme = useResolvedColorScheme(colorScheme, systemColorScheme);
   const value: SewakContextValue = { density, colorScheme, resolvedColorScheme };
 
   return (

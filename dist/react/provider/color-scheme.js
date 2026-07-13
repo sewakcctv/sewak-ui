@@ -15,7 +15,7 @@ function subscribeToSystemScheme(onStoreChange) {
 function getSystemScheme() {
     return getMediaQuery()?.matches === true ? 'dark' : 'light';
 }
-export function useResolvedColorScheme(colorScheme) {
-    const systemScheme = useSyncExternalStore(colorScheme === 'system' ? subscribeToSystemScheme : () => () => undefined, colorScheme === 'system' ? getSystemScheme : () => colorScheme, () => colorScheme === 'system' ? 'light' : colorScheme);
+export function useResolvedColorScheme(colorScheme, systemColorScheme = 'light') {
+    const systemScheme = useSyncExternalStore(colorScheme === 'system' ? subscribeToSystemScheme : () => () => undefined, colorScheme === 'system' ? getSystemScheme : () => colorScheme, () => colorScheme === 'system' ? systemColorScheme : colorScheme);
     return colorScheme === 'system' ? systemScheme : colorScheme;
 }

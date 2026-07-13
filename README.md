@@ -42,16 +42,26 @@ Provider order is `SewakProvider` → optional app providers → `ToastProvider`
 
 ### SSR colour-scheme bootstrap
 
-For `colorScheme="system"`, run this inline script in `<head>` before CSS paints, or use the framework's existing equivalent. Keep the provider set to `system`; the bootstrap only supplies the first resolved value.
+For `colorScheme="system"`, resolve the request's persisted preference (or a `Sec-CH-Prefers-Color-Scheme` client hint) on the server and pass that same value as `systemColorScheme` to the server render and hydration render. This makes the provider element—the element that scopes Sewak semantic variables—carry the correct `data-sewak-color-scheme` before CSS paints, and keeps React's hydration markup identical.
 
-```html
-<script>
-  document.documentElement.dataset.sewakColorScheme =
-    matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-</script>
+```tsx
+const systemColorScheme = request.cookies.get('colour-scheme') === 'dark'
+  ? 'dark'
+  : 'light';
+
+hydrateRoot(
+  document.getElementById('root')!,
+  <SewakProvider
+    density="comfortable"
+    colorScheme="system"
+    systemColorScheme={systemColorScheme}
+  >
+    <ToastProvider><App /></ToastProvider>
+  </SewakProvider>,
+);
 ```
 
-If the framework theme mechanism already emits deterministic light/dark markup, pass that resolved scheme to the initial provider render instead. Avoid rendering one scheme on the server and changing it only after hydration.
+Embed `systemColorScheme` in the server's serialized bootstrap data and reuse it on the client; do not recompute a different hydration value. After hydration, `SewakProvider` follows live `prefers-color-scheme` changes. On a first visit with no request hint or persisted preference, light is the documented fallback; persist the detected preference for later SSR requests. A script on `document.documentElement` is not sufficient because Sewak variables are scoped by the nested provider attribute.
 
 ## React API
 
@@ -59,7 +69,7 @@ Import all components and their TypeScript types from `@sewak/ui/react`.
 
 | Group | Public components | Key contract |
 | --- | --- | --- |
-| Provider | `SewakProvider`, `useSewak` | `density`: `comfortable \| compact`; `colorScheme`: `light \| dark \| system` |
+| Provider | `SewakProvider`, `useSewak` | `density`: `comfortable \| compact`; `colorScheme`: `light \| dark \| system`; `systemColorScheme`: SSR-resolved `light \| dark` |
 | Controls | `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Field` | Forward refs; native DOM props; named variants/sizes; Field links labels, descriptions, and errors |
 | Surfaces | `Card`, `Badge`, `Alert`, `EmptyState`, `Skeleton`, `Spinner`, `Separator` | Semantic status variants; empty/loading states remain readable at narrow widths |
 | Feedback | `ToastProvider`, `useToast`, `Tooltip` | Trigger toasts with `useToast().toast(...)`; there is intentionally **no raw `Toast` API** |

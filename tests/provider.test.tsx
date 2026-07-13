@@ -2,6 +2,8 @@
 
 import '@testing-library/jest-dom/vitest';
 import { act, cleanup, render, screen } from '@testing-library/react';
+import { hydrateRoot } from 'react-dom/client';
+import { renderToString } from 'react-dom/server';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { SewakProvider, useSewak } from '../src/react/index.js';
@@ -61,6 +63,22 @@ describe('SewakProvider', () => {
     expect(screen.getByTestId('context')).toHaveTextContent(
       '{"density":"comfortable","colorScheme":"system","resolvedColorScheme":"light"}',
     );
+  });
+
+  it('hydrates bootstrap-resolved system dark markup without a warning or scheme flash', async () => {
+    const serverMarkup = renderToString(<SewakProvider systemColorScheme="dark"><Surface /></SewakProvider>);
+    expect(serverMarkup).toContain('data-sewak-color-scheme="dark"');
+    const container = document.createElement('div');
+    container.innerHTML = serverMarkup;
+    document.body.append(container);
+    installMatchMedia(true);
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    hydrateRoot(container, <SewakProvider systemColorScheme="dark"><Surface /></SewakProvider>);
+    await act(async () => undefined);
+    expect(container.firstElementChild).toHaveAttribute('data-sewak-color-scheme', 'dark');
+    expect(error).not.toHaveBeenCalled();
+    error.mockRestore();
+    container.remove();
   });
 
   it('sets explicit compact and dark attributes', () => {

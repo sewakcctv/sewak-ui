@@ -9,7 +9,9 @@ export interface SewakContextValue {
 export interface SewakProviderProps {
     density?: Density;
     colorScheme?: ColorScheme;
+    /** Resolved system scheme embedded in SSR markup to keep hydration and first paint deterministic. */
+    systemColorScheme?: ResolvedColorScheme;
     children: ReactNode;
 }
-export declare function SewakProvider({ density, colorScheme, children, }: SewakProviderProps): import("react").JSX.Element;
+export declare function SewakProvider({ density, colorScheme, systemColorScheme, children, }: SewakProviderProps): import("react").JSX.Element;
 export declare function useSewak(): SewakContextValue;

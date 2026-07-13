@@ -8,8 +8,8 @@ const fallbackValue = {
     resolvedColorScheme: 'light',
 };
 let hasWarnedAboutMissingProvider = false;
-export function SewakProvider({ density = 'comfortable', colorScheme = 'system', children, }) {
-    const resolvedColorScheme = useResolvedColorScheme(colorScheme);
+export function SewakProvider({ density = 'comfortable', colorScheme = 'system', systemColorScheme = 'light', children, }) {
+    const resolvedColorScheme = useResolvedColorScheme(colorScheme, systemColorScheme);
     const value = { density, colorScheme, resolvedColorScheme };
     return (_jsx(SewakContext.Provider, { value: value, children: _jsx("div", { "data-sewak-density": density, "data-sewak-color-scheme": resolvedColorScheme, children: children }) }));
 }

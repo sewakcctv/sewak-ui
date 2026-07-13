@@ -23,11 +23,14 @@ function getSystemScheme(): ResolvedColorScheme {
   return getMediaQuery()?.matches === true ? 'dark' : 'light';
 }
 
-export function useResolvedColorScheme(colorScheme: ColorScheme): ResolvedColorScheme {
+export function useResolvedColorScheme(
+  colorScheme: ColorScheme,
+  systemColorScheme: ResolvedColorScheme = 'light',
+): ResolvedColorScheme {
   const systemScheme = useSyncExternalStore(
     colorScheme === 'system' ? subscribeToSystemScheme : () => () => undefined,
     colorScheme === 'system' ? getSystemScheme : () => colorScheme,
-    () => colorScheme === 'system' ? 'light' : colorScheme,
+    () => colorScheme === 'system' ? systemColorScheme : colorScheme,
   );
 
   return colorScheme === 'system' ? systemScheme : colorScheme;
