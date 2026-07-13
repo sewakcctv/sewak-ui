@@ -1,10 +1,13 @@
 import { execFile } from 'node:child_process';
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import { hexToRgb, rgbToHsl } from '../src/convert.js';
 
 interface SourceTokens {
-  color: { brand: Record<string, string> };
+  color: {
+    brand: Record<string, string>;
+    semanticPalette: Record<string, string>;
+  };
   alias: { primary: string };
   font: { sans: string };
 }
@@ -64,6 +67,18 @@ export declare const brand: Tokens['color']['brand'];
 export declare const fontSans: string;
 `;
 
+const semantic = await readFile('src/styles/semantic.css', 'utf8');
+const components = await readFile('src/styles/components.css', 'utf8');
+const semanticPalette = [
+  ':root {',
+  `  --font-sans: ${source.font.sans};`,
+  ...brandEntries.map(([name, value]) => `  --color-brand-${name}: ${value};`),
+  ...Object.entries(source.color.semanticPalette)
+    .map(([name, value]) => `  --sewak-palette-${name}: ${value};`),
+  '}',
+  '',
+].join('\n');
+
 await mkdir('dist', { recursive: true });
 await Promise.all([
   writeFile('dist/theme.css', theme),
@@ -78,4 +93,4 @@ await promisify(execFile)(process.execPath, [
   '-p',
   'tsconfig.build.json',
 ]);
-await copyFile('src/styles/components.css', 'dist/components.css');
+await writeFile('dist/components.css', `${semanticPalette}${semantic}\n${components}`);

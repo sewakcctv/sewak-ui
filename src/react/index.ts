@@ -1,5 +1,13 @@
 import type { ReactNode } from 'react';
 
+export { SewakProvider, useSewak } from './provider/SewakProvider.js';
+export type {
+  Density,
+  SewakContextValue,
+  SewakProviderProps,
+} from './provider/SewakProvider.js';
+export type { ColorScheme, ResolvedColorScheme } from './provider/color-scheme.js';
+
 interface PlaceholderProps {
   children?: ReactNode;
 }
@@ -7,8 +15,6 @@ interface PlaceholderProps {
 function Placeholder({ children }: PlaceholderProps): ReactNode {
   return children ?? null;
 }
-
-export const SewakProvider = Placeholder;
 
 export const Button = Placeholder;
 export const IconButton = Placeholder;

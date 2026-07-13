@@ -1,7 +1,7 @@
+export { SewakProvider, useSewak } from './provider/SewakProvider.js';
 function Placeholder({ children }) {
     return children ?? null;
 }
-export const SewakProvider = Placeholder;
 export const Button = Placeholder;
 export const IconButton = Placeholder;
 export const Input = Placeholder;

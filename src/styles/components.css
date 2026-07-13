@@ -1,1 +1,11 @@
-/* Shared component styles are added alongside their component implementations. */
+[data-sewak-density] {
+  box-sizing: border-box;
+  color: var(--sewak-color-text);
+  font-family: var(--font-sans);
+}
+
+[data-sewak-density] *,
+[data-sewak-density] *::before,
+[data-sewak-density] *::after {
+  box-sizing: inherit;
+}
