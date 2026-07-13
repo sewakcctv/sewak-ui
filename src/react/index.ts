@@ -16,15 +16,24 @@ function Placeholder({ children }: PlaceholderProps): ReactNode {
   return children ?? null;
 }
 
-export const Button = Placeholder;
-export const IconButton = Placeholder;
-export const Input = Placeholder;
-export const Textarea = Placeholder;
-export const Select = Placeholder;
-export const Checkbox = Placeholder;
-export const Radio = Placeholder;
-export const Switch = Placeholder;
-export const Field = Placeholder;
+export { Button } from './controls/Button.js';
+export type { ButtonProps } from './controls/Button.js';
+export { IconButton } from './controls/IconButton.js';
+export type { IconButtonProps } from './controls/IconButton.js';
+export { Input } from './controls/Input.js';
+export type { InputProps } from './controls/Input.js';
+export { Textarea } from './controls/Textarea.js';
+export type { TextareaProps } from './controls/Textarea.js';
+export { Select } from './controls/Select.js';
+export type { SelectProps } from './controls/Select.js';
+export { Checkbox } from './controls/Checkbox.js';
+export type { CheckboxProps } from './controls/Checkbox.js';
+export { Radio } from './controls/Radio.js';
+export type { RadioProps } from './controls/Radio.js';
+export { Switch } from './controls/Switch.js';
+export type { SwitchProps } from './controls/Switch.js';
+export { Field } from './controls/Field.js';
+export type { FieldProps } from './controls/Field.js';
 
 export const Card = Placeholder;
 export const Badge = Placeholder;
