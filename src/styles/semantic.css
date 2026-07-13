@@ -5,7 +5,7 @@
   --sewak-color-elevated: var(--sewak-palette-white);
   --sewak-color-text: var(--sewak-palette-neutral-900);
   --sewak-color-text-muted: var(--sewak-palette-neutral-600);
-  --sewak-color-border: var(--sewak-palette-neutral-200);
+  --sewak-color-border: var(--sewak-palette-neutral-600);
   --sewak-color-primary: var(--color-brand-600);
   --sewak-color-primary-hover: var(--color-brand-700);
   --sewak-color-primary-text: var(--sewak-palette-white);
@@ -24,7 +24,7 @@
   --sewak-color-elevated: var(--sewak-palette-neutral-800);
   --sewak-color-text: var(--sewak-palette-neutral-50);
   --sewak-color-text-muted: var(--sewak-palette-neutral-400);
-  --sewak-color-border: var(--sewak-palette-neutral-600);
+  --sewak-color-border: var(--sewak-palette-neutral-400);
   --sewak-color-primary: var(--color-brand-400);
   --sewak-color-primary-hover: var(--color-brand-300);
   --sewak-color-primary-text: var(--sewak-palette-neutral-950);
