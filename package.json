@@ -1,0 +1,29 @@
+{
+  "name": "@sewak/ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    ".": "./dist/index.js",
+    "./theme.css": "./dist/theme.css",
+    "./shadcn.css": "./dist/shadcn.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:dist": "npm run build && git diff --exit-code -- dist"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@types/node": "^24.0.15",
+    "eslint": "^9.31.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vitest": "^3.2.4"
+  }
+}
