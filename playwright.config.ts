@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/visual',
-  snapshotPathTemplate: '{testDir}/showcase.spec.ts-snapshots/{arg}-{projectName}{ext}',
+  snapshotPathTemplate: '{testDir}/showcase.spec.ts-snapshots/{arg}-{projectName}-{platform}{ext}',
   expect: { toHaveScreenshot: { maxDiffPixels: 0 } },
   use: { baseURL: 'http://127.0.0.1:4173', colorScheme: 'light' },
   projects: [
