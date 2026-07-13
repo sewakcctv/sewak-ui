@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import { forwardRef, useId, useState } from 'react';
 import type { ComponentPropsWithoutRef, HTMLAttributes, ReactNode, TableHTMLAttributes } from 'react';
 export interface TableProps extends TableHTMLAttributes<HTMLTableElement>{caption:string}
-export const Table=forwardRef<HTMLTableElement,TableProps>(function Table({caption,className,children,...props},ref){return <div className="sewak-table-wrap"><table ref={ref} className={clsx('sewak-table',className)} {...props}><caption>{caption}</caption>{children}</table></div>});
+export const Table=forwardRef<HTMLTableElement,TableProps>(function Table({caption,className,children,...props},ref){return <div className="sewak-table-wrap" tabIndex={0} role="region" aria-label={`${caption} table`}><table ref={ref} className={clsx('sewak-table',className)} {...props}><caption>{caption}</caption>{children}</table></div>});
 export interface PaginationProps extends ComponentPropsWithoutRef<'nav'>{page:number;pageCount:number;onPageChange:(page:number)=>void}
 export const Pagination=forwardRef<HTMLElement,PaginationProps>(function Pagination({page,pageCount,onPageChange,className,...props},ref){return <nav ref={ref} aria-label="Pagination" className={clsx('sewak-pagination',className)} {...props}><button type="button" aria-label="Go to previous page" disabled={page<=1} onClick={()=>onPageChange(page-1)}>Previous</button><span aria-live="polite">Page {page} of {pageCount}</span><button type="button" aria-label="Go to next page" disabled={page>=pageCount} onClick={()=>onPageChange(page+1)}>Next</button></nav>});
 export interface TabItem{id:string;label:string;content:ReactNode;disabled?:boolean}

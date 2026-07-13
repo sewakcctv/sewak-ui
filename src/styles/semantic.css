@@ -25,8 +25,8 @@
   --sewak-color-text: var(--sewak-palette-neutral-50);
   --sewak-color-text-muted: var(--sewak-palette-neutral-400);
   --sewak-color-border: var(--sewak-palette-neutral-400);
-  --sewak-color-primary: var(--color-brand-400);
-  --sewak-color-primary-hover: var(--color-brand-300);
+  --sewak-color-primary: var(--color-brand-300);
+  --sewak-color-primary-hover: var(--color-brand-200);
   --sewak-color-primary-text: var(--sewak-palette-neutral-950);
   --sewak-color-success: var(--sewak-palette-success-dark);
   --sewak-color-warning: var(--sewak-palette-warning-dark);

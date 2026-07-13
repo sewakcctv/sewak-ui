@@ -3,3 +3,6 @@ coverage/
 *.tsbuildinfo
 .worktrees/
 .superpowers/
+showcase-dist/
+test-results/
+playwright-report/

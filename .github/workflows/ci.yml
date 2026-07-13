@@ -23,3 +23,8 @@ jobs:
       - run: npm run build
       - name: Verify committed dist is fresh
         run: git diff --exit-code -- dist/
+      - run: npm run showcase:build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:visual
+        env:
+          CI: true
