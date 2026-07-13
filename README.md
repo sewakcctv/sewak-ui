@@ -1,12 +1,16 @@
 # @sewak/ui
 
-Sewak Security's private, versioned source of truth for digital brand tokens: the Sewak Blue scale and Inter font stack. It has zero runtime dependencies and generates every distributed format from `src/tokens.json`.
+Sewak Security's versioned source of truth for digital brand tokens: the Sewak Blue scale and Inter font stack. It has zero runtime dependencies and generates every distributed format from `src/tokens.json`.
 
 ## Install
 
+Install from the release tag tarball (plain https — works in CI and Docker builds with no git or auth):
+
 ```bash
-npm install "@sewak/ui@github:sewakcctv/sewak-ui#v1.0.0"
+npm install "https://github.com/sewakcctv/sewak-ui/archive/refs/tags/v1.0.0.tar.gz"
 ```
+
+Do not use the `github:sewakcctv/sewak-ui#v1.0.0` git form: npm records it with a `git+ssh` resolved URL in the lockfile, which breaks `npm ci` on any machine without GitHub SSH keys (proven in Plan-Builder PR #42's first CI run).
 
 ## Usage
 
