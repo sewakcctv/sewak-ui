@@ -113,7 +113,6 @@
 .sewak-input,
 .sewak-textarea,
 .sewak-select {
-  min-block-size: 2.5rem;
   border: var(--sewak-border-width) solid var(--sewak-color-border);
   border-radius: var(--sewak-radius-md);
   color: var(--sewak-color-text);
@@ -124,6 +123,7 @@
 
 .sewak-button,
 .sewak-icon-button {
+  block-size: var(--sewak-button-size);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -133,10 +133,10 @@
 }
 
 .sewak-button { padding-inline: var(--sewak-control-padding-inline); }
-.sewak-icon-button { inline-size: var(--sewak-control-height); padding: 0; }
-.sewak-button--sm { min-block-size: 2.5rem; }
-.sewak-button--md { min-block-size: var(--sewak-control-height); }
-.sewak-button--lg { min-block-size: 3rem; }
+.sewak-icon-button { inline-size: var(--sewak-button-size); padding: 0; }
+.sewak-button--sm { --sewak-button-size: 2.5rem; }
+.sewak-button--md { --sewak-button-size: var(--sewak-control-height); }
+.sewak-button--lg { --sewak-button-size: 3rem; }
 .sewak-button--primary { border-color: var(--sewak-color-primary); color: var(--sewak-color-primary-text); background: var(--sewak-color-primary); }
 .sewak-button--primary:hover:not(:disabled) { border-color: var(--sewak-color-primary-hover); background: var(--sewak-color-primary-hover); }
 .sewak-button--secondary:hover:not(:disabled),
@@ -149,6 +149,7 @@
 .sewak-textarea,
 .sewak-select {
   inline-size: 100%;
+  min-block-size: 2.5rem;
   padding-inline: var(--sewak-control-padding-inline);
 }
 .sewak-textarea { min-block-size: 5rem; padding-block: 0.625rem; resize: vertical; }
@@ -178,6 +179,9 @@
 }
 .sewak-button--loading { cursor: wait; }
 .sewak-input[aria-invalid='true'], .sewak-textarea[aria-invalid='true'], .sewak-select[aria-invalid='true'] { border-color: var(--sewak-color-danger); }
+.sewak-checkbox[aria-invalid='true'], .sewak-radio[aria-invalid='true'], .sewak-switch[aria-invalid='true'] {
+  box-shadow: 0 0 0 var(--sewak-focus-width) var(--sewak-color-danger);
+}
 
 .sewak-field { display: grid; gap: 0.375rem; }
 .sewak-field__label { color: var(--sewak-color-text); font-weight: 600; }

@@ -20,10 +20,46 @@ import {
 
 afterEach(cleanup);
 
+const componentCss = readFileSync('src/styles/components.css', 'utf8');
+const semanticCss = readFileSync('src/styles/semantic.css', 'utf8');
+
+function declarationsFor(selector: string) {
+  const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const matches = [...componentCss.matchAll(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`, 'g'))];
+  expect(matches, `missing CSS rule for ${selector}`).not.toHaveLength(0);
+  return matches.map((match) => match[1]).join('\n');
+}
+
 describe('controls', () => {
-  it('keeps compact interactive targets at least 40px', () => {
-    const css = readFileSync('src/styles/components.css', 'utf8');
-    expect(css).toMatch(/min-(?:block-size|height):\s*2\.5rem/);
+  it('defines exact button heights and square icon-button sizes for every density-safe size', () => {
+    expect(semanticCss).toMatch(/\[data-sewak-density='comfortable'\]\s*\{[^}]*--sewak-control-height:\s*2\.75rem/s);
+    expect(semanticCss).toMatch(/\[data-sewak-density='compact'\]\s*\{[^}]*--sewak-control-height:\s*2\.5rem/s);
+    expect(declarationsFor('.sewak-button,\n.sewak-icon-button')).toMatch(/block-size:\s*var\(--sewak-button-size\)/);
+    expect(declarationsFor('.sewak-icon-button')).toMatch(/inline-size:\s*var\(--sewak-button-size\)/);
+
+    for (const [size, dimension] of [
+      ['sm', '2.5rem'],
+      ['md', 'var\\(--sewak-control-height\\)'],
+      ['lg', '3rem'],
+    ]) {
+      expect(declarationsFor(`.sewak-button--${size}`)).toMatch(new RegExp(`--sewak-button-size:\\s*${dimension}`));
+    }
+  });
+
+  it('keeps every control and selection target at least 40px in compact density', () => {
+    expect(declarationsFor('.sewak-button--sm')).toMatch(/--sewak-button-size:\s*2\.5rem/);
+    expect(declarationsFor('.sewak-button--md')).toMatch(/--sewak-button-size:\s*var\(--sewak-control-height\)/);
+    expect(declarationsFor('.sewak-button--lg')).toMatch(/--sewak-button-size:\s*3rem/);
+    expect(declarationsFor('.sewak-input,\n.sewak-textarea,\n.sewak-select')).toMatch(/min-block-size:\s*2\.5rem/);
+    expect(declarationsFor('.sewak-checkbox,\n.sewak-radio,\n.sewak-switch')).toMatch(/inline-size:\s*2\.5rem/);
+    expect(declarationsFor('.sewak-checkbox,\n.sewak-radio,\n.sewak-switch')).toMatch(/block-size:\s*2\.5rem/);
+  });
+
+  it('visibly marks every invalid control with the semantic danger colour', () => {
+    expect(declarationsFor(".sewak-input[aria-invalid='true'], .sewak-textarea[aria-invalid='true'], .sewak-select[aria-invalid='true']"))
+      .toMatch(/border-color:\s*var\(--sewak-color-danger\)/);
+    expect(declarationsFor(".sewak-checkbox[aria-invalid='true'], .sewak-radio[aria-invalid='true'], .sewak-switch[aria-invalid='true']"))
+      .toMatch(/box-shadow:\s*0 0 0 var\(--sewak-focus-width\) var\(--sewak-color-danger\)/);
   });
 
   it('applies named button variants and sizes while preserving native props and refs', () => {
