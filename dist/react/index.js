@@ -9,7 +9,7 @@ export { Radio } from './controls/Radio.js';
 export { Switch } from './controls/Switch.js';
 export { Field } from './controls/Field.js';
 export { Card, Badge, Alert, EmptyState, Skeleton, Spinner, Separator } from './surfaces/index.js';
-export { Toast, ToastProvider, useToast, Tooltip } from './feedback/index.js';
+export { ToastProvider, useToast, Tooltip } from './feedback/index.js';
 export { Dialog, ConfirmDialog, DropdownMenu, Drawer } from './overlays/index.js';
 export { Table, Pagination, Tabs, StatCard } from './data/index.js';
 const Placeholder = ({ children }) => children ?? null;

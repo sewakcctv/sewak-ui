@@ -128,3 +128,5 @@ describe('SewakProvider', () => {
     warning.mockRestore();
   });
 });
+
+describe.each([['comfortable','light'],['comfortable','dark'],['compact','light'],['compact','dark']] as const)('%s %s combination',(density,scheme)=>{it('sets both independent adaptive dimensions',()=>{const view=render(<SewakProvider density={density} colorScheme={scheme}><Surface/></SewakProvider>);const root=view.getByTestId('surface').parentElement;expect(root).toHaveAttribute('data-sewak-density',density);expect(root).toHaveAttribute('data-sewak-color-scheme',scheme);view.unmount()});});

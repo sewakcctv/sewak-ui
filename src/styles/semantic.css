@@ -52,6 +52,11 @@
   --sewak-control-padding-inline: 1rem;
   --sewak-content-gap: 1.5rem;
   --sewak-surface-padding: 1.5rem;
+  --sewak-component-padding-block: 0.75rem;
+  --sewak-component-padding-inline: 1rem;
+  --sewak-component-gap: 0.75rem;
+  --sewak-table-cell-padding: 0.75rem;
+  --sewak-interactive-min: 2.75rem;
 }
 
 [data-sewak-density='compact'] {
@@ -59,6 +64,11 @@
   --sewak-control-padding-inline: 0.75rem;
   --sewak-content-gap: 1rem;
   --sewak-surface-padding: 1rem;
+  --sewak-component-padding-block: 0.5rem;
+  --sewak-component-padding-inline: 0.75rem;
+  --sewak-component-gap: 0.5rem;
+  --sewak-table-cell-padding: 0.5rem;
+  --sewak-interactive-min: 2.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

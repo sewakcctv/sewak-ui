@@ -47,3 +47,13 @@ describe('semantic border contrast', () => {
     },
   );
 });
+
+describe('Task 4 semantic foreground contrast', () => {
+  it.each(['light', 'dark'] as const)('keeps actual %s component text pairs at WCAG AA', async (scheme) => {
+    const css = await readFile('src/styles/semantic.css', 'utf8');
+    const block = css.match(new RegExp(`\\[data-sewak-color-scheme='${scheme}'\\] \\{([\\s\\S]*?)\\n\\}`))?.[1];
+    const role = (name:string):string => { const palette=block?.match(new RegExp(`--sewak-color-${name}: var\\(--(?:sewak-palette-|color-brand-)([\\w-]+)\\);`))?.[1]; expect(palette,`missing ${name} for ${scheme}`).toBeDefined(); const value=source.color.semanticPalette[palette as keyof typeof source.color.semanticPalette]??source.color.brand[palette as keyof typeof source.color.brand]; expect(value,`missing palette ${palette}`).toBeDefined(); return value };
+    const pairs:[string,string][]=[['text','surface'],['text','elevated'],['text-muted','surface'],['text-muted','elevated'],['primary-text','primary'],['success','elevated'],['warning','elevated'],['danger','elevated']];
+    for(const [foreground,background] of pairs) expect(contrastRatio(role(foreground),role(background)),`${scheme} ${foreground} on ${background}`).toBeGreaterThanOrEqual(4.5);
+  });
+});

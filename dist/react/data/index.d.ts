@@ -15,13 +15,16 @@ export interface TabItem {
     content: ReactNode;
     disabled?: boolean;
 }
-export declare function Tabs({ tabs, defaultValue, onValueChange }: {
+export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
     tabs: TabItem[];
+    value?: string;
     defaultValue?: string;
     onValueChange?: (id: string) => void;
-}): import("react").JSX.Element;
-export declare function StatCard({ label, value, trend, className, ...props }: {
+}
+export declare const Tabs: import("react").ForwardRefExoticComponent<TabsProps & import("react").RefAttributes<HTMLDivElement>>;
+export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
     label: string;
     value: ReactNode;
     trend?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>): import("react").JSX.Element;
+}
+export declare const StatCard: import("react").ForwardRefExoticComponent<StatCardProps & import("react").RefAttributes<HTMLDivElement>>;

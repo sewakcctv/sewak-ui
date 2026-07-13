@@ -1,5 +1,7 @@
-import type { ReactElement, ReactNode } from 'react';
-export interface DialogProps {
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import * as MenuPrimitive from '@radix-ui/react-dropdown-menu';
+import type { ComponentPropsWithoutRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
+export interface DialogProps extends Omit<ComponentPropsWithoutRef<typeof DialogPrimitive.Content>, 'title' | 'children'> {
     trigger?: ReactElement;
     title: string;
     description?: string;
@@ -7,9 +9,8 @@ export interface DialogProps {
     open?: boolean;
     defaultOpen?: boolean;
     onOpenChange?: (open: boolean) => void;
-    className?: string;
 }
-export declare function Dialog({ trigger, title, description, children, open, defaultOpen, onOpenChange, className }: DialogProps): import("react").JSX.Element;
+export declare const Dialog: import("react").ForwardRefExoticComponent<DialogProps & import("react").RefAttributes<HTMLDivElement>>;
 export interface ConfirmDialogProps extends Omit<DialogProps, 'children'> {
     confirmLabel?: string;
     cancelLabel?: string;
@@ -22,11 +23,20 @@ export interface MenuItem {
     onSelect: () => void;
     disabled?: boolean;
 }
-export declare function DropdownMenu({ trigger, items }: {
+type DataAttributes = {
+    [key: `data-${string}`]: string | undefined;
+};
+export interface DropdownMenuProps {
     trigger: ReactElement;
     items: MenuItem[];
-}): import("react").JSX.Element;
+    open?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    contentProps?: (ComponentPropsWithoutRef<typeof MenuPrimitive.Content> & HTMLAttributes<HTMLDivElement> & DataAttributes);
+}
+export declare const DropdownMenu: import("react").ForwardRefExoticComponent<DropdownMenuProps & import("react").RefAttributes<HTMLDivElement>>;
 export interface DrawerProps extends DialogProps {
     side?: 'left' | 'right';
 }
-export declare function Drawer({ side, className, ...props }: DrawerProps): import("react").JSX.Element;
+export declare const Drawer: import("react").ForwardRefExoticComponent<DrawerProps & import("react").RefAttributes<HTMLDivElement>>;
+export {};

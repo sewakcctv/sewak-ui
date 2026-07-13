@@ -27,12 +27,12 @@ export type { FieldProps } from './controls/Field.js';
 
 export { Card, Badge, Alert, EmptyState, Skeleton, Spinner, Separator } from './surfaces/index.js';
 export type { BadgeProps, AlertProps, EmptyStateProps, SpinnerProps } from './surfaces/index.js';
-export { Toast, ToastProvider, useToast, Tooltip } from './feedback/index.js';
-export type { ToastInput } from './feedback/index.js';
+export { ToastProvider, useToast, Tooltip } from './feedback/index.js';
+export type { ToastInput, ToastProviderProps, TooltipProps } from './feedback/index.js';
 export { Dialog, ConfirmDialog, DropdownMenu, Drawer } from './overlays/index.js';
-export type { DialogProps, ConfirmDialogProps, MenuItem, DrawerProps } from './overlays/index.js';
+export type { DialogProps, ConfirmDialogProps, DropdownMenuProps, MenuItem, DrawerProps } from './overlays/index.js';
 export { Table, Pagination, Tabs, StatCard } from './data/index.js';
-export type { TableProps, PaginationProps, TabItem } from './data/index.js';
+export type { TableProps, PaginationProps, TabsProps, TabItem, StatCardProps } from './data/index.js';
 
 const Placeholder = ({children}:{children?:ReactNode}) => children ?? null;
 export const AppShell = Placeholder;
