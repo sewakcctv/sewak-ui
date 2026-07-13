@@ -1,0 +1,10 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { clsx } from 'clsx';
+import { forwardRef } from 'react';
+export const Card = forwardRef(function Card({ className, ...props }, ref) { return _jsx("div", { ref: ref, className: clsx('sewak-card', className), ...props }); });
+export const Badge = forwardRef(function Badge({ variant = 'neutral', className, ...props }, ref) { return _jsx("span", { ref: ref, className: clsx('sewak-badge', `sewak-badge--${variant}`, className), ...props }); });
+export const Alert = forwardRef(function Alert({ variant = 'info', className, ...props }, ref) { return _jsx("div", { ref: ref, role: "alert", className: clsx('sewak-alert', `sewak-alert--${variant}`, className), ...props }); });
+export const EmptyState = forwardRef(function EmptyState({ title, description, children, className, ...props }, ref) { return _jsxs("div", { ref: ref, className: clsx('sewak-empty-state', className), ...props, children: [_jsx("h3", { children: title }), description && _jsx("p", { children: description }), children] }); });
+export const Skeleton = forwardRef(function Skeleton({ className, ...props }, ref) { return _jsx("div", { ref: ref, className: clsx('sewak-skeleton', className), ...props }); });
+export const Spinner = forwardRef(function Spinner({ label = 'Loading', className, ...props }, ref) { return _jsx("span", { ref: ref, role: "status", "aria-label": label, className: clsx('sewak-spinner', className), ...props, children: _jsx("span", { className: "sewak-visually-hidden", children: label }) }); });
+export const Separator = forwardRef(function Separator({ className, ...props }, ref) { return _jsx("hr", { ref: ref, className: clsx('sewak-separator', className), ...props }); });
