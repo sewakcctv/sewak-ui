@@ -1,4 +1,6 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
 import { hexToRgb, rgbToHsl } from '../src/convert.js';
 
 interface SourceTokens {
@@ -70,3 +72,10 @@ await Promise.all([
   writeFile('dist/index.js', index),
   writeFile('dist/index.d.ts', declarations),
 ]);
+
+await promisify(execFile)(process.execPath, [
+  'node_modules/typescript/bin/tsc',
+  '-p',
+  'tsconfig.build.json',
+]);
+await copyFile('src/styles/components.css', 'dist/components.css');

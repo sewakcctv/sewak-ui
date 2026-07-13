@@ -5,5 +5,8 @@ export default tseslint.config(
   { ignores: ['dist/', 'node_modules/'] },
   eslint.configs.recommended,
   ...tseslint.configs.strict,
-  { files: ['**/*.ts'], rules: { '@typescript-eslint/consistent-type-imports': 'error' } },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: { '@typescript-eslint/consistent-type-imports': 'error' },
+  },
 );
