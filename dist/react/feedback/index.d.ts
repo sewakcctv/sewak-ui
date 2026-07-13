@@ -10,16 +10,16 @@ interface ToastContextValue {
     toast: (value: ToastInput) => number;
     dismiss: (id: number) => void;
 }
-export interface ToastProviderProps {
-    children: ReactNode;
-    duration?: number;
-    viewportProps?: HTMLAttributes<HTMLDivElement>;
-}
-export declare function ToastProvider({ children, duration, viewportProps }: ToastProviderProps): import("react").JSX.Element;
-export declare function useToast(): ToastContextValue;
 type DataAttributes = {
     [key: `data-${string}`]: string | undefined;
 };
+export interface ToastProviderProps {
+    children: ReactNode;
+    duration?: number;
+    viewportProps?: (ComponentPropsWithoutRef<'div'> & DataAttributes);
+}
+export declare const ToastProvider: import("react").ForwardRefExoticComponent<ToastProviderProps & import("react").RefAttributes<HTMLDivElement>>;
+export declare function useToast(): ToastContextValue;
 export interface TooltipProps {
     children: ReactElement;
     content: ReactNode;

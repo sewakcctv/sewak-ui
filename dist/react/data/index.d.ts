@@ -1,14 +1,14 @@
-import type { HTMLAttributes, ReactNode, TableHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef, HTMLAttributes, ReactNode, TableHTMLAttributes } from 'react';
 export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {
     caption: string;
 }
 export declare const Table: import("react").ForwardRefExoticComponent<TableProps & import("react").RefAttributes<HTMLTableElement>>;
-export interface PaginationProps extends HTMLAttributes<HTMLElement> {
+export interface PaginationProps extends ComponentPropsWithoutRef<'nav'> {
     page: number;
     pageCount: number;
     onPageChange: (page: number) => void;
 }
-export declare function Pagination({ page, pageCount, onPageChange, className, ...props }: PaginationProps): import("react").JSX.Element;
+export declare const Pagination: import("react").ForwardRefExoticComponent<PaginationProps & import("react").RefAttributes<HTMLElement>>;
 export interface TabItem {
     id: string;
     label: string;

@@ -17,7 +17,7 @@ export interface ConfirmDialogProps extends Omit<DialogProps, 'children'> {
     onConfirm: () => void;
     danger?: boolean;
 }
-export declare function ConfirmDialog({ confirmLabel, cancelLabel, onConfirm, danger, ...props }: ConfirmDialogProps): import("react").JSX.Element;
+export declare const ConfirmDialog: import("react").ForwardRefExoticComponent<ConfirmDialogProps & import("react").RefAttributes<HTMLDivElement>>;
 export interface MenuItem {
     label: string;
     onSelect: () => void;

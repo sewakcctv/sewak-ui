@@ -2,9 +2,9 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { useState } from 'react';
+import { createRef, useState } from 'react';
 import { afterEach, expect, it, vi } from 'vitest';
-import { Dialog, Drawer, DropdownMenu } from '../src/react/index.js';
+import { ConfirmDialog, Dialog, Drawer, DropdownMenu } from '../src/react/index.js';
 afterEach(cleanup);
 it('cycles focus at both dialog boundaries and returns focus', async()=>{const user=userEvent.setup();render(<Dialog trigger={<button>Open</button>} title="Edit plan"><button>First</button><button>Last</button></Dialog>);const trigger=screen.getByRole('button',{name:'Open'});await user.click(trigger);const first=screen.getByRole('button',{name:'First'});const close=screen.getByRole('button',{name:'Close dialog'});close.focus();await user.tab();expect(first).toHaveFocus();first.focus();await user.tab({shift:true});expect(close).toHaveFocus();await user.keyboard('{Escape}');expect(trigger).toHaveFocus();});
 it('Drawer uses controlled composition', async()=>{const changed=vi.fn();function H(){const [open,setOpen]=useState(true);return <Drawer open={open} onOpenChange={v=>{changed(v);setOpen(v)}} title="Filters">Body</Drawer>}const user=userEvent.setup();render(<H/>);await user.keyboard('{Escape}');expect(changed).toHaveBeenCalledWith(false);});
@@ -12,3 +12,4 @@ it('closes on an outside pointer interaction',async()=>{const user=userEvent.set
 it('menu supports arrows and escape',async()=>{const user=userEvent.setup();render(<DropdownMenu trigger={<button>Actions</button>} items={[{label:'Edit',onSelect:vi.fn()},{label:'Delete',onSelect:vi.fn()}]}/>);await user.click(screen.getByRole('button',{name:'Actions'}));await user.keyboard('{ArrowDown}');expect(screen.getByRole('menuitem',{name:'Edit'})).toHaveFocus();await user.keyboard('{Escape}');expect(screen.queryByRole('menu')).not.toBeInTheDocument();});
 it('supports controlled menu state and forwards content DOM props',()=>{render(<DropdownMenu trigger={<button>Actions</button>} items={[]} open contentProps={{'data-testid':'menu'}}/>);expect(screen.getByTestId('menu')).toHaveAttribute('role','menu');});
 it('forwards dialog content refs and DOM props',()=>{const ref=vi.fn();render(<Dialog open title="Details" ref={ref} data-testid="dialog">Body</Dialog>);expect(ref).toHaveBeenCalled();expect(screen.getByTestId('dialog')).toHaveAttribute('role','dialog');});
+it('forwards ConfirmDialog refs and content props through the Dialog contract',()=>{const ref=createRef<HTMLDivElement>();render(<ConfirmDialog open title="Delete plan" onConfirm={()=>{}} ref={ref} data-testid="confirm"/>);expect(ref.current).toBe(screen.getByTestId('confirm'));expect(ref.current).toHaveAttribute('role','dialog');});
